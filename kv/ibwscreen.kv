@@ -1,0 +1,135 @@
+#:import webbrowser webbrowser
+<IbwScreen>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#1a73e8")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        GridLayout:
+            cols: 3
+            size_hint_y: None
+            height: 30
+            LabelButton:
+                text: "<< BMI"
+                on_release:
+                    app.change_screen("bmi_screen")
+            Label:
+                text: ''
+            LabelButton:
+                text: "BMR >>"
+                on_release:
+                    app.change_screen("bmr_screen")
+        GridLayout:
+            canvas.before:
+                Color:
+                    rgba: (255, 255, 255, 255)
+                Line:
+                    width: 1.5
+                    rectangle: self.x, self.y, self.width, self.height                    
+            cols: 1
+            GridLayout:
+                cols: 3
+                padding: 5
+                Label:
+                    text: "Gender"
+                BoxLayout:
+                    ToggleButton:
+                        text: "Male"
+                        id: male
+                        group: "gender"
+                        on_state: app.checkbox_click(self.state, "male")
+                    ToggleButton:
+                        text: "Female"
+                        id: female
+                        group: "gender"
+                        on_state: app.checkbox_click(self.state, "female")
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: "Weight"
+                TextInput:
+                    id: weight
+                    multinline: False
+                    input_filter: 'int'
+                Label:
+                    text: "kg"
+                Label:
+                    text: "Height:"
+                TextInput:
+                    id: height
+                    multinline: False
+                    input_filter: 'int'
+                Label:
+                    text: "(cm)"
+                
+
+        BoxLayout:
+            oreintation: 'vertical'
+            padding: 20
+            RoundedButton:
+                id: calculate_btn
+                text: "CALCULATE"
+                size_hint: 0.5, 0.5
+                pos_hint: {'center_x':.5, 'center_y': .5}
+                on_release:
+                    app.calculate_ibw(height.text, weight.text)
+        GridLayout:
+            canvas.before:
+                Color:
+                    rgba: (255, 255, 255, 255)
+                Line:
+                    width: 1.5
+                    rectangle: self.x, self.y, self.width, self.height
+            cols: 1
+            Label:
+                text: "Your Ideal Body Weight:"
+            Label:
+                id: user_iwr
+                text: "0.00"
+            Label:
+                text: "(KILOGRAMS)"
+            Label:
+                id: usr_suggestion
+                text: ""
+            Label:
+                id: need_help_link
+                markup: True
+                text: 'Based on [ref=some]BMI Chart [/ref]'
+                on_ref_press:
+                    import webbrowser
+                    webbrowser.open('https://www.whathealth.com/bmi/chart-metric.html')
+                
+
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 20
+            RoundedButton:
+                text: "YOUR CALORIES NEED"
+                size_hint: 0.5, 0.5
+                pos_hint: {'center_x':.5, 'center_y': .5}
+                on_release:
+                    app.change_screen("bmr_screen")
+
+
+
+<RoundedButton@Button>
+    background_color: (0, 0, 0, 0.04)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (140, 140, 140, 0.3)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [25]
+
+
+
+

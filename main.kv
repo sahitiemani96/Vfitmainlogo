@@ -1,0 +1,22 @@
+#:include kv/homescreen.kv
+#:include kv/bmiscreen.kv
+#:include kv/bmrscreen.kv
+#:include kv/ibwscreen.kv
+
+GridLayout:
+    cols: 1
+    ScreenManager:
+        id: screen_manager
+        HomeScreen:
+            name: "home_screen"
+            id: home_screen
+        BmiScreen:
+            name: "bmi_screen"
+            id: bmi_screen
+        BmrScreen:
+            name: "bmr_screen"
+            id: bmr_screen
+        IbwScreen:
+            name: "ibw_screen"
+            id: ibw_screen
+        

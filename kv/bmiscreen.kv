@@ -1,0 +1,138 @@
+<BmiScreen>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#1a73e8")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        GridLayout:
+            cols: 3
+            size_hint_y: None
+            height: 30
+            LabelButton:
+                text: "<< Home"
+                on_release:
+                    app.change_screen("home_screen")
+            Label:
+                text: ''
+            LabelButton:
+                text: "IBW >>"
+                on_release:
+                    app.change_screen("ibw_screen")
+        GridLayout:
+            canvas.before:
+                Color:
+                    rgba: (255, 255, 255, 255)
+                Line:
+                    width: 1.5
+                    rectangle: self.x, self.y, self.width, self.height
+                    
+            cols: 1
+            GridLayout:
+                cols: 3
+                padding: 5
+                Label:
+                    text: "Gender"
+                    text_size: self.size
+                    halign: 'left'
+                    padding_x: 10
+
+                BoxLayout:
+                    ToggleButton:
+                        text: "Male"
+                        id: male
+                        group: "gender"
+                        on_state: app.checkbox_click(self.state, "male")
+                    ToggleButton:
+                        text: "Female"
+                        id: female
+                        group: "gender"
+                        on_state: app.checkbox_click(self.state, "female")
+                Label:
+                    text: ""
+
+                Label:
+                    text: "Weight"
+                    text_size: self.size
+                    halign: 'left'
+                    padding_x: 10
+                TextInput:
+                    id: weight
+                    multinline: False
+                    input_filter: 'int'
+                Label:
+                    text: "(kg)" 
+                    text_size: self.size
+                    halign: 'left'
+                    padding_x: 0
+                Label:
+                    text: "Height:"
+                    text_size: self.size
+                    halign: 'left'
+                    padding_x: 10
+                TextInput:
+                    id: height
+                    multinline: False
+                    input_filter: 'int'
+                Label:
+                    text: "(cm)"
+                    text_size: self.size
+                    halign: 'left'
+                    padding_x: 0
+                
+
+        BoxLayout:
+            oreintation: 'vertical'
+            padding: 10
+            RoundedButton:
+                id: calculate_btn
+                text: "CALCULATE"
+                size_hint: 0.5, 0.5
+                pos_hint: {'center_x':.5, 'center_y': .5}
+                on_release:
+                    app.calculate_bmi(height.text, weight.text)
+
+        GridLayout:
+            canvas.before:
+                Color:
+                    rgba: (255, 255, 255, 255)
+                Line:
+                    width: 1.5
+                    rectangle: self.x, self.y, self.width, self.height
+            cols: 1
+            Label:
+                text: "Your BMI is:"
+            Label:
+                id: user_bmi
+                text: "0.0"
+            Label:
+                id: weight_status
+                text: "(Null)"
+            Label:
+                text: "Normal BMI range: 18.5kg/m2 - 25kg/m2"       
+
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 20
+            RoundedButton:
+                text: "FIND IDEAL WEIGHT"
+                size_hint: 0.5, 0.5
+                pos_hint: {'center_x':.5, 'center_y': .5}
+                on_release:
+                    app.change_screen("ibw_screen")
+
+
+<RoundedButton@Button>
+    background_color: (0, 0, 0, 0.04)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (140, 140, 140, 0.3)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [25]
