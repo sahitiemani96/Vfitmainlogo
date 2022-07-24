@@ -25,6 +25,14 @@ class CustomDropDown(DropDown):
     pass
 class LabelButton(ButtonBehavior, Label):
     pass
+class SummaryScreen(Screen):
+    pass
+class DietPlanScreen(Screen):
+    pass
+class WorkoutScreen(Screen):
+    pass
+
+
 
 GUI = Builder.load_file("main.kv")
 
@@ -130,6 +138,12 @@ class MainApp(App):
         self.root.ids["bmr_screen"].ids["weight"].text = weight
         self.root.ids["bmr_screen"].ids["weight"].disabled = True
 
+        #Passing data to summary_screen
+        self.root.ids["summary_screen"].ids["gender"].text = self.manOrWoman
+        self.root.ids["summary_screen"].ids["weight"].text = "{0} Kg".format(weight)
+        self.root.ids["summary_screen"].ids["height"].text = "{0} cm".format(height)
+        self.root.ids["summary_screen"].ids["bmi"].text = "{0}".format(bmi)
+
     def calculate_ibw(self, height, weight):
         kg = int(weight)
         if self.manOrWoman == "male":
@@ -163,6 +177,9 @@ class MainApp(App):
         self.root.ids["ibw_screen"].ids["male"].disabled = True
         self.root.ids["ibw_screen"].ids["female"].disabled = True
 
+        #Passing Data to summary_screen
+        self.root.ids["summary_screen"].ids["ibw"].text = "{0} Kg".format(ibw)
+
         #Adding IBW data into database
         try:
             self.db.collection("users").document(f"sirka_{self.data_time}").update({"ibw": round(ibw, 2)})
@@ -183,6 +200,10 @@ class MainApp(App):
         
         #Printing BMR results
         self.root.ids["bmr_screen"].ids["user_bmr"].text = str(round(bmr, 2))
+
+        #passing data to summary_screen
+        self.root.ids["summary_screen"].ids["bmr"].text = "{0} kcal".format(bmr)
+        self.root.ids["summary_screen"].ids["age"].text = "{0} Yrs".format(age)
 
         #Disabling the widgets
         self.root.ids["bmr_screen"].ids["weight"].disabled = True

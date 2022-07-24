@@ -1,6 +1,6 @@
 #:import utils kivy.utils
 
-<HomeScreen>:
+<DietPlanScreen>:
 
     FloatLayout:
         BoxLayout:
@@ -12,26 +12,19 @@
                     size: self.size
             orientation: 'horizontal'
             padding: 20
-            spacing: 20
-
-        GridLayout:
-            rows:1
-            pos_hint: {"top": 1, "left": 1}
-            size_hint: 1, .35
-            Image:
-                source: "icons/Logo.png"
+            spacing: 20       
         GridLayout:
             rows:1
             pos_hint: {"top": 0.8, "left": 2}
             size_hint: 1, .4
             Label:
-                text:'Please take few moment and discover your health data and follow healty diet plan, workouts and accurate yoga poses'
+                text:'Diet Plan'
                 bold: True
         BoxLayout:
            
             padding: 30
             RoundedButton:
-                text: "HEALTH METRICES"  
+                text: "KETO DIET"  
                 bold: True
                 font_size: self.width/35
                 size_hint: 0.1, 0.1
@@ -42,7 +35,7 @@
            
             padding: 30
             RoundedButton:
-                text: "DIET PLAN & FINTNESS GOALS"
+                text: "FRUIT DIET"
                 bold: True
                 font_size: self.width/35
                 size_hint: 0.1, 0.1
@@ -53,7 +46,7 @@
            
             padding: 30
             RoundedButton:
-                text: "SUMMARY"
+                text: "SALTLESS DIET"
                 bold: True
                 font_size: self.width/35
                 size_hint: 0.1, 0.1

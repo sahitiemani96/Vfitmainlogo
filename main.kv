@@ -2,6 +2,9 @@
 #:include kv/bmiscreen.kv
 #:include kv/bmrscreen.kv
 #:include kv/ibwscreen.kv
+#:include kv/summaryscreen.kv
+#:include kv/dietplanscreen.kv
+#:include kv/workoutscreen.kv
 
 GridLayout:
     cols: 1
@@ -19,4 +22,13 @@ GridLayout:
         IbwScreen:
             name: "ibw_screen"
             id: ibw_screen
+        SummaryScreen:
+            name:"summary_screen"
+            id:summary_screen
+        DietPlanScreen:
+            name:"dietplan_screen"
+            id:dietplan_screen    
+        WorkoutScreen:
+            name:'workout_screen'
+            id:workout_screen    
         

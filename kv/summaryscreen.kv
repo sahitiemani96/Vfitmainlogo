@@ -1,0 +1,143 @@
+<SummaryScreen>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#1a73e8")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        GridLayout:
+            cols: 3
+            size_hint_y: None
+            height: 30
+            LabelButton:
+                text: "<< BMR"
+                on_release:
+                    app.change_screen("bmr_screen")
+            Label:
+                text: 'Summary'
+            LabelButton:
+                text: ""                
+        GridLayout:
+            canvas.before:
+                Color:
+                    rgba: (255, 255, 255, 255)
+                Line:
+                    width: 1.5
+                    rectangle: self.x, self.y, self.width, self.height
+                    
+            cols: 1
+            GridLayout:
+                cols: 2
+                padding: 5
+                GridLayout:
+                    cols:2                    
+                    Label:                        
+                        text: "Gender:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:gender 
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                                                                                
+                    Label:                        
+                        text: "Weight:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:weight     
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                                                                                                        
+                    Label:                        
+                        text: "Height:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:height   
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                        
+                    Label:                        
+                        text: "Age:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:age  
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                                                                                  
+                GridLayout:
+                    cols:2                    
+                    Label:                        
+                        text: "BMI:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:bmi 
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                                                             
+                        text: '27.0 (Overweight)'
+                    Label:                        
+                        text: "IBW:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:ibw   
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                                                           
+                        text: '67.84 Kg'
+                    Label:                        
+                        text: "BMR:"
+                        text_size: self.size
+                        halign: 'right'                        
+                    Label:
+                        id:bmr    
+                        halign:'center'
+                        text_size: self.size   
+                        padding_x:20                                                          
+                        text: '2627 KCal'                                                                     
+        GridLayout:
+            rows:1
+            pos_hint: {"top": 0.8, "left": 2}
+            size_hint: 1, .4
+            Label:
+                text:'Diet Plan & WorkOut'
+                bold: True
+        GridLayout:           
+            cols: 2            
+            BoxLayout:
+                orientation: 'horizontal'
+                padding: 20
+                RoundedButton:
+                    text: "DIET PLAN"
+                    size_hint: 0.5, 0.5
+                    pos_hint: {'center_x':.5, 'center_y': .5}    
+                    on_release:
+                        app.change_screen('dietplan_screen')
+                               
+            BoxLayout:
+                orientation: 'horizontal'
+                padding: 20
+                RoundedButton:
+                    text: "WORKOUT PLAN"
+                    size_hint: 0.5, 0.5
+                    pos_hint: {'center_x':.5, 'center_y': .5}
+                    on_release:
+                        app.change_screen('workout_screen')                                                          
+<RoundedButton@Button>
+    background_color: (0, 0, 0, 0.04)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (140, 140, 140, 0.3)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [25]
