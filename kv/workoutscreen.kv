@@ -1,70 +1,93 @@
-#:import utils kivy.utils
-
+#:import webbrowser webbrowser
 <WorkoutScreen>:
-    GridLayout:
-        cols: 3
-        size_hint_y: None
-        height: 30
-        LabelButton:
-            text: "<< Summary"
-            on_release:
-                app.change_screen("summary_screen")
-        Label:
-            text: ''
-        LabelButton:
-            text: ""
-                
-    FloatLayout:       
-        BoxLayout:
-            canvas:
-                Color:
-                    rgb: utils.get_color_from_hex("#1a73e8")
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            orientation: 'horizontal'
-            padding: 20
-            spacing: 20       
+    BoxLayout:       
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#1a73e8")
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
         GridLayout:
-            rows:1
-            pos_hint: {"top": 0.8, "left": 2}
-            size_hint: 1, .4
-            Label:
-                text:'Workout screen'
-                bold: True
-        BoxLayout:
-           
-            padding: 30
-            RoundedButton:
-                text: "CARDIO WORKOUT"  
-                bold: True
-                font_size: self.width/35
-                size_hint: 0.1, 0.1
-                pos_hint: {'center_x': .5, 'center_y': .5}
-                on_release:
-                    app.change_screen("bmi_screen")
-        BoxLayout:
-           
-            padding: 30
-            RoundedButton:
-                text: "CORE WORKOUT"
-                bold: True
-                font_size: self.width/35
-                size_hint: 0.1, 0.1
-                pos_hint: {'center_x':.3, 'center_y': .3}
-                on_release:
-                    app.change_screen("ibw_screen")
-        BoxLayout:
-           
-            padding: 30
-            RoundedButton:
-                text: "YOGA"
-                bold: True
-                font_size: self.width/35
-                size_hint: 0.1, 0.1
-                pos_hint: {'center_x':.1, 'center_y': .1}
+            cols: 3
+            size_hint_y: None
+            height: 30
+            LabelButton:
+                text: "<< Summary"
                 on_release:
                     app.change_screen("summary_screen")
+            Label:
+                text: 'Diet Plan'
+            LabelButton:
+                text: ""   
+        GridLayout:
+            rows:1            
+            Label:
+                text:'Diet Plan'
+                bold: True
+                font_size: '20sp'
+        BoxLayout:  
+            canvas:
+                Color:
+                    rgb:255,255,255
+                RoundedRectangle:
+                    size: self.size 
+                    pos: self.pos 
+                    radius:[20]                                   
+            Label:            
+                id: need_help_link
+                markup: True
+                bold: True
+                color:  0 , 0 , 0 , 1
+                font_size: '15sp'                              
+                size_hint: 0.1, 0.1
+                pos_hint: {'center_x': .5, 'center_y': .5}                   
+                text: '[ref=some]CARDIO[/ref]'                
+                on_ref_press:
+                    import webbrowser
+                    webbrowser.open('https://www.whathealth.com/bmi/chart-metric.html')                    
+        BoxLayout:   
+            canvas:
+                Color:
+                    rgb:255,255,255
+                RoundedRectangle:
+                    size: self.size 
+                    pos: self.pos 
+                    radius:[20]                                   
+            Label:            
+                id: need_help_link
+                markup: True
+                bold: True
+                color:  0 , 0 , 0 , 1
+                font_size: '15sp'                              
+                size_hint: 0.1, 0.1
+                pos_hint: {'center_x': .5, 'center_y': .5}                   
+                text: '[ref=some]YOGA[/ref]'                
+                on_ref_press:
+                    import webbrowser
+                    webbrowser.open('https://www.whathealth.com/bmi/chart-metric.html')
+        BoxLayout: 
+            canvas:
+                Color:
+                    rgb:255,255,255
+                RoundedRectangle:
+                    size: self.size 
+                    pos: self.pos 
+                    radius:[20]                                   
+            Label:            
+                id: need_help_link
+                markup: True
+                bold: True
+                color:  0 , 0 , 0 , 1
+                font_size: '15sp'                              
+                size_hint: 0.1, 0.1
+                pos_hint: {'center_x': .5, 'center_y': .5}                   
+                text: '[ref=some]HIIT[/ref]'                
+                on_ref_press:
+                    import webbrowser
+                    webbrowser.open('https://www.whathealth.com/bmi/chart-metric.html')
 
 
 
